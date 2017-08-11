@@ -1,3 +1,4 @@
+
 function Question(question, answer, choices) {
 
 	this.question = question;
@@ -19,12 +20,6 @@ var questionArray = [question1, question2, question3, question4, question5];
 
 var showQuestion;
 var count = 0;
-
-
-
-
-// var q = questionArray[0].question;
-// console.log(q);
 
 $('#startButton').click(function () {
 	displayQuestion();
@@ -71,6 +66,10 @@ function stopGame() {
   clearInterval(showQuestion);
 
 }
+
+$('.choices').click(function() {
+	console.log($(this))
+})
 
 // timeConverter: function(t) {
 
