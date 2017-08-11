@@ -1,0 +1,21 @@
+body {
+  background: url('../images/background.png'); 
+}
+
+.main {
+	background-color: #FFFF33;
+	text-align: center;
+	height: 90vh;
+	margin-top: 40px;
+	padding: 40px;
+	color: #C43417;
+	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	border-radius: 25px;
+	border: 4px solid #C43417;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
