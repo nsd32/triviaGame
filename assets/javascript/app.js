@@ -20,6 +20,7 @@ var questionArray = [question1, question2, question3, question4, question5];
 
 var showQuestion;
 var count = 0;
+var correct = 0;
 
 $('#startButton').click(function () {
 	displayQuestion();
@@ -29,25 +30,40 @@ $('#startButton').click(function () {
 
 function displayQuestion() {
 
-  $('#question').html(questionArray[count].question);
-  $('#first').html(questionArray[count].choices[0]);
-  $('#second').html(questionArray[count].choices[1]);
-  $('#third').html(questionArray[count].choices[2]);
-  $('#fourth').html(questionArray[count].choices[3]); 
+  var choiceDiv = $('#choice-list');
 
-  // var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  $('#question').html(questionArray[count].question);
+  
+  for (var i = 0; i < questionArray[count].choices.length; i++) {
+  	var choice = $('<li>' + questionArray[count].choices[i] + '</li>' + '<br />');
+  	choiceDiv.append(choice);
+  }
 
 }
 
 function nextQuestion() {
   
   count++
+  $('#choice-list').empty()
 
   $('#question').html(questionArray[count].question);
-  $('#first').html(questionArray[count].choices[0]);
-  $('#second').html(questionArray[count].choices[1]);
-  $('#third').html(questionArray[count].choices[2]);
-  $('#fourth').html(questionArray[count].choices[3]);
+
+  var newList = $('#choice-list')
+
+  for (var i = 0; i < questionArray[count].choices.length; i++) {
+  	var choice = $('<li>' + questionArray[count].choices[i] + '</li>' + '<br />');
+  	$('#choice-list').append(choice);
+  }
+
+
+  // $('#first').html(questionArray[count].choices[0]);
+  // $('#first').val(questionArray[count].choices[0]);
+  // $('#second').html(questionArray[count].choices[1]);
+  // $('#second').val(questionArray[count].choices[1]);
+  // $('#third').html(questionArray[count].choices[2]);
+  // $('#third').val(questionArray[count].choices[2]);
+  // $('#fourth').html(questionArray[count].choices[3]);
+  // $('#fourth').val(questionArray[count].choices[3]);
 
   if (count === questionArray.length) {
   	  count = 0;
@@ -57,7 +73,7 @@ function nextQuestion() {
 
 function startGame() {
   
-  showQuestion = setInterval(nextQuestion, 30000);
+  showQuestion = setInterval(nextQuestion, 3000);
 
 }
 
@@ -68,7 +84,30 @@ function stopGame() {
 }
 
 $('.choices').click(function() {
-	console.log($(this))
+	console.log($(this).html());
+	console.log(count)
+
+	if (count === 0 && $(this).html() === "Cosmo") {
+		correct++;
+		console.log(correct);
+	} else if (count === 1 && $(this).html() === "J. Peterman") {
+		correct++
+		console.log(correct);
+	} else if (count === 2 && $(this).html() === "Buck Naked") {
+		correct++
+		console.log(correct);
+	} else if (count === 3 && $(this).html() === "Florida") {
+		correct++
+		console.log(correct);
+	} else if (count === 4 && $(this).html() === "Newman") {
+		correct++
+		console.log(correct);
+	} else if (count >= 5) {
+		alert("You got " + correct + " out of 5!")
+	}
+
+	nextQuestion();
+	
 })
 
 // timeConverter: function(t) {
