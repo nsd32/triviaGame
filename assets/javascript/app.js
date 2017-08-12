@@ -73,7 +73,7 @@ function nextQuestion() {
 
 function startGame() {
   
-  showQuestion = setInterval(nextQuestion, 3000);
+  showQuestion = setInterval(nextQuestion, 30000);
 
 }
 

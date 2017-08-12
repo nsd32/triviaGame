@@ -3,14 +3,15 @@ body {
 }
 
 .main {
-	background-color: #FFFF33;
+	background-color: rgba(255, 237, 21, 0.85);
+	/*R: 255 G: 237 B: 21*/
 	text-align: center;
 	height: 90vh;
 	width: 75%;
 	margin-top: 40px;
 	padding: 40px;
 	color: #C43417;
-	text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
+	text-shadow: 2px 0 0 #faebd7, -2px 0 0 #faebd7, 0 2px 0 #faebd7, 0 -2px 0 #faebd7, 1px 1px #faebd7, -1px -1px 0 #faebd7, 1px -1px 0 #faebd7, -1px 1px 0 #faebd7;
 	border-radius: 25px;
 	border: 4px solid #C43417;
 }
