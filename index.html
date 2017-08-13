@@ -22,16 +22,19 @@
   </head>
   <body>
     <div class="container main">
-      <h1>Seinfeld Trivia!</h1><br /><br />
-      <h3>Time Remaining: <span></span></h3><br /><br />
-      <h3 id="question"></h3><br /><br />
-      <button type="button" class="btn btn-danger btn-lg" id="startButton">Start!</button>
+      <div class="row">
+        <div class="col-sm-12">
+          <h1 class="sein">Seinfeld Trivia!</h1><br /><br />
+          <h3>Time Remaining: <span id="time"></span></h3><br /><br />
+          <button type="button" class="btn btn-danger btn-lg" id="startButton">Start!</button>
+          <h3 id="question"></h3><br /><br />
+          <h3>
+            <ul id="choice-list">
 
-      <h3>
-        <ul id="choice-list">
-
-        </ul>
-      </h3>
+            </ul>
+          </h3>
+        </div>
+      </div> <!-- row -->
     </div> <!-- container -->
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
