@@ -1,19 +1,20 @@
 
 $(document).ready(function() {
 
-	function Question(question, answer, choices) {
+	function Question(question, answer, choices, pictures) {
 
 		this.question = question;
 		this.answer = answer;
 		this.choices = choices;
+		this.pictures = pictures;
 
 	}
 
-	var question1 = new Question("What is Kramer's first name?", "Cosmo", ["Joe", "Frank", "Cosmo", "Xavier"]);
-	var question2 = new Question("What catalog did Elaine run when her boss moved to Burma?", "J. Peterman", ["L.L. Bean", "Pottery Barn", "Victoria's Secret", "J. Peterman"]);
-	var question3 = new Question("If George were a porn star, what did he say his name would be?", "Buck Naked", ["Buck Naked", "Ron Jeremy", "Hugh Johnson", "Peter Dong"]);
-	var question4 = new Question("Where do Jerry's parents live?", "Florida", ["Queens", "Florida", "New Jersey", "Brooklyn"]);
-	var question5 = new Question("Who is Jerry's nemisis in the building?", "Newman", ["The super", "Kramer", "Manny", "Newman"]);
+	var question1 = new Question("What is Kramer's first name?", "Cosmo", ["Joe", "Frank", "Cosmo", "Xavier"], ["assets/images/cosmo-kramer.jpg", "assets/images/wrong.png"]);
+	var question2 = new Question("What catalog did Elaine run when her boss moved to Burma?", "J. Peterman", ["L.L. Bean", "Pottery Barn", "Victoria's Secret", "J. Peterman"], ["assets/images/jpeterman.png", "assets/images/wrong.png"]);
+	var question3 = new Question("If George were a porn star, what did he say his name would be?", "Buck Naked", ["Buck Naked", "Ron Jeremy", "Hugh Johnson", "Peter Dong"], ["assets/images/costanza.jpg", "assets/images/wrong.png"]);
+	var question4 = new Question("Where do Jerry's parents live?", "Florida", ["Queens", "Florida", "New Jersey", "Brooklyn"], ["assets/images/parents.jpeg", "assets/images/wrong.png"]);
+	var question5 = new Question("Who is Jerry's nemisis in the building?", "Newman", ["The super", "Kramer", "Manny", "Newman"], ["assets/images/newman.jpeg", "assets/images/wrong.png"]);
 
 	var questionArray = [question1, question2, question3, question4, question5];
 
@@ -22,19 +23,24 @@ $(document).ready(function() {
 	var count;
 	var correct = 0;
 	var time = 10;
-	var clockRunning = true;
-	var testImage = "https://images-na.ssl-images-amazon.com/images/M/MV5BZjZjMzQ2ZmUtZWEyZC00NWJiLWFjM2UtMzhmYzZmZDcxMzllXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_UY268_CR3,0,182,268_AL_.jpg";
+	var tenSeconds = timeConverter(time);
+	$('#time').html(tenSeconds);
+
+	if (time === 0) {
+	  	nextQuestion();
+	}
+
 
 	$('#startButton').click(function () {
+		
 		showQuestion = setInterval(nextQuestion, 10000);
 	    startTime = setInterval(timer, 1000);
-	    // clockRunning = true;
-		// startGame();
 		$('#startButton').hide();
-		timer();
 		count = 0;
 		displayQuestion();
+		
 	});
+
 
 
 	function displayQuestion() {
@@ -51,34 +57,27 @@ $(document).ready(function() {
 	  		console.log($(this).attr('data-value'));
 	  		console.log(questionArray[count].answer);
 
-	  		time = 10;
-
+	  		clearIntervals();
+	  		setTimeout(setIntervals, 5000);
+	  		$('#choice-list').hide();
+	  		
+	  		setTimeout(hideImage, 5000);
+	  		setTimeout(nextQuestion, 5000);
 
 	  		if ($(this).attr('data-value') === questionArray[count].answer) {
 	  			
 	  			correct++;
-	  			// $('#choice-list').hide();
-	  			// $('#image').attr('src', testImage);
-	  			// setTimeout(hideImage, 5000);
-	  			// setTimeout(nextQuestion, 5000);
-	  			// clearInterval(showQuestion);
-	  			// clockRunning = false;
-	  			// clearInterval(timer);
-
-	  			nextQuestion();
 	  			
-	  		} else {
+	  			$('#image').attr('src', questionArray[count].pictures[0]);
 	  			
-	  			$('#choice-list').hide();
-	  			$('#image').attr('src', testImage);
-	  			setTimeout(hideImage, 5000);
-	  			setTimeout(nextQuestion, 5000);
+	  		} else {	
+	  			
+	  			$('#image').attr('src', questionArray[count].pictures[1]);
 	  			
 	  		}
 
-	  		clearInterval(showQuestion);
-	  		showQuestion = setInterval(nextQuestion, 10000);
-	  		
+	  		$('#image').show();
+
 	  	});
 
 	  	choiceDiv.append(choice);
@@ -88,15 +87,16 @@ $(document).ready(function() {
 	}
 
 	function nextQuestion() {
-	  
+	  console.log('nextQuestion ran')
 	  count++
-	  console.log(count)
-	  // showQuestion = setInterval(nextQuestion, 10000);
+	  console.log(count);
+	  $('#time').html(tenSeconds);
 
 	  time = 10
 
+
 	  $('#choice-list').empty();
-	  // $('#choice-list').show();
+	  $('#image').attr('src', '');
 
 	  var newList = $('#choice-list');
 
@@ -114,33 +114,31 @@ $(document).ready(function() {
 		  		console.log($(this).attr('data-value'));
 		  		console.log(questionArray[count].answer);
 
-		  		// time = 10;
+		  		$('#choice-list').hide();
+		  		clearIntervals();
+	  		    setTimeout(setIntervals, 5000);
+		  		
+	  			setTimeout(hideImage, 5000);
+	  			setTimeout(nextQuestion, 5000);	
 
 		  		if ($(this).attr('data-value') === questionArray[count].answer) {
 		  			
 		  			correct++;
-		  			// $('#choice-list').hide();
-		  			nextQuestion();
-		  			console.log('this is correct ' + correct);
+		  			
+	  				$('#image').attr('src', questionArray[count].pictures[0]);
+	  				
+	  				
 		  			
 		  		} else {
 		  			
-		  			nextQuestion();
-		  			// alert('wrong!');
+	  				$('#image').attr('src', questionArray[count].pictures[1]);
+	  				
 		  			
 		  		}
 
-		  		if (questionArray[count]) { 
-
-			  		clearInterval(showQuestion);
-			  		console.log('inside function ' + showQuestion);
-			  		showQuestion = setInterval(nextQuestion, 10000);
-
-			  	} else {
-			  		clearInterval(showQuestion);
-			  	}
+		  		$('#image').show();
 		  		
-		  	});	    
+		  	});	
 
 		  	$('#choice-list').append(choice);
 		  	
@@ -160,25 +158,27 @@ $(document).ready(function() {
 
 	  		alert(`You got ${correct} out of 5`);
 	  		time = 10;
-	 	    // clockRunning = false;
 	  		correct = 0;
 	  		$('#startButton').show();
 	  		clearInterval(showQuestion);
 	  		clearInterval(startTime);
-	  		$('#time').html("");
+	  		$('#time').html(tenSeconds);
 	  		console.log('reset game');
 	  		console.log('inside resetGame ' + showQuestion);
 
 	}
 
+
 	function timer() {
+		
+		time--;
 
 		var converted = timeConverter(time);
 		
 		$('#time').html(converted);
 
-		time--;
-	  
+		console.log(time);
+
 	}
 
 	function timeConverter(t) {
@@ -197,15 +197,31 @@ $(document).ready(function() {
 	  return minutes + ":" + seconds;
 	}
 
+	function hideImage() {
+	  $('#image').hide();
+	  console.log('hideImage ran');
+	  $('#choice-list').show();
+	  // $('#time').hide();
+    }
+
+    function clearIntervals() {
+	  clearInterval(showQuestion);
+	  clearInterval(startTime);
+	  
+    }
+
+    function setIntervals() {
+      showQuestion = setInterval(nextQuestion, 10000);
+	  startTime = setInterval(timer, 1000);
+    }
+
 });
 
-function hideImage() {
-	$('#image').hide();
-}
 
-function resetInterval() {
-	setInterval(nextQuestion, 10000)
-}
+
+
+
+
 
 
 
