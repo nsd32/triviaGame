@@ -3,10 +3,10 @@ $(document).ready(function() {
 
 	function Question(question, answer, choices, pictures) {
 
-		this.question = question;
-		this.answer = answer;
-		this.choices = choices;
-		this.pictures = pictures;
+	  this.question = question;
+	  this.answer = answer;
+	  this.choices = choices;
+	  this.pictures = pictures;
 
 	}
 
@@ -27,16 +27,16 @@ $(document).ready(function() {
 	$('#time').html(tenSeconds);
 
 	if (time === 0) {
-	  	nextQuestion();
+	  nextQuestion();
 	}
 
 	$('#startButton').click(function () {
 		
-		showQuestion = setInterval(nextQuestion, 10000);
-	    startTime = setInterval(timer, 1000);
-		$('#startButton').hide();
-		count = 0;
-		displayQuestion();
+	  showQuestion = setInterval(nextQuestion, 10000);
+      startTime = setInterval(timer, 1000);
+	  $('#startButton').hide();
+	  count = 0;
+	  displayQuestion();
 		
 	});
 
@@ -51,29 +51,27 @@ $(document).ready(function() {
 	  	choice.attr('data-value', questionArray[count].choices[i]);
 	  	
 	  	choice.on('click', function () {
-	  		console.log($(this).attr('data-value'));
-	  		console.log(questionArray[count].answer);
+  		  console.log($(this).attr('data-value'));
+  		  console.log(questionArray[count].answer);
 
-	  		clearIntervals();
-	  		setTimeout(setIntervals, 5000);
-	  		$('#choice-list').hide();
-	  		
-	  		setTimeout(hideImage, 5000);
-	  		setTimeout(nextQuestion, 5000);
+  		  clearIntervals();
+  		  setTimeout(setIntervals, 5000);
+  		  $('#choice-list').hide();
+  		  setTimeout(hideImage, 5000);
+  		  setTimeout(nextQuestion, 5000);
 
-	  		if ($(this).attr('data-value') === questionArray[count].answer) {
-	  			
-	  			correct++;
-	  			
-	  			$('#image').attr('src', questionArray[count].pictures[0]);
-	  			
-	  		} else {	
-	  			
-	  			$('#image').attr('src', questionArray[count].pictures[1]);
-	  			
-	  		}
+  		  if ($(this).attr('data-value') === questionArray[count].answer) {
+  			
+  			correct++;
+  			$('#image').attr('src', questionArray[count].pictures[0]);
+  			
+  		  } else {	
+  			
+  			$('#image').attr('src', questionArray[count].pictures[1]);
+  			
+  		  }
 
-	  		$('#image').show();
+  		  $('#image').show();
 
 	  	});
 
@@ -84,6 +82,7 @@ $(document).ready(function() {
 	}
 
 	function nextQuestion() {
+
 	  console.log('nextQuestion ran')
 	  count++
 	  console.log(count);
@@ -96,76 +95,73 @@ $(document).ready(function() {
 
 		// var l = questionArray[count] ? questionArray[count].choices.length : 0;
 
-		if (questionArray[count]) {
+	  if (questionArray[count]) {
 
-		  $('#question').html(questionArray[count].question);
+	    $('#question').html(questionArray[count].question);
 
-		  for (var i = 0; i < questionArray[count].choices.length; i++) {
-		  	var choice = $("<li>" + questionArray[count].choices[i] + "</li>" + "<br />");
-		  	choice.attr('data-value', questionArray[count].choices[i]);
+	    for (var i = 0; i < questionArray[count].choices.length; i++) {
+	  	  var choice = $("<li>" + questionArray[count].choices[i] + "</li>" + "<br />");
+	  	  choice.attr('data-value', questionArray[count].choices[i]);
 
-		  	choice.on('click', function () {
-		  		console.log($(this).attr('data-value'));
-		  		console.log(questionArray[count].answer);
+	  	  choice.on('click', function () {
+	  	    console.log($(this).attr('data-value'));
+	  	    console.log(questionArray[count].answer);
 
-		  		$('#choice-list').hide();
-		  		clearIntervals();
-	  		    setTimeout(setIntervals, 5000);
-		  		
-	  			setTimeout(hideImage, 5000);
-	  			setTimeout(nextQuestion, 5000);	
+	  	    $('#choice-list').hide();
+	  	    clearIntervals();
+  		    setTimeout(setIntervals, 5000);
+  		    setTimeout(hideImage, 5000);
+  		    setTimeout(nextQuestion, 5000);	
 
-		  		if ($(this).attr('data-value') === questionArray[count].answer) {
-		  			
-		  			correct++;
-		  			
-	  				$('#image').attr('src', questionArray[count].pictures[0]);		
-		  			
-		  		} else {
-		  			
-	  				$('#image').attr('src', questionArray[count].pictures[1]);
-	  						  			
-		  		}
+	  	    if ($(this).attr('data-value') === questionArray[count].answer) {
+	  			
+	  		  correct++;	
+  			  $('#image').attr('src', questionArray[count].pictures[0]);		
+	  			
+	  	    } else {
+	  			
+  			  $('#image').attr('src', questionArray[count].pictures[1]);
+  						  			
+	  	    }
 
-		  		$('#image').show();
-		  		
-		  	});	
+	  	    $('#image').show();
+	  		
+	  	  });	
 
-		  	$('#choice-list').append(choice);
-		  	
-		  }
+	  	  $('#choice-list').append(choice);
+	  	
+	    }
 
-		} else {
+	  } else {
+		
+	    resetGame();	
 			
-			resetGame();	
-				
-		}	 
+	  }	 
 
 	}
 
 	function resetGame() {
       
       $('#question').html("");
-
-	  		alert(`You got ${correct} out of 5`);
-	  		time = 10;
-	  		correct = 0;
-	  		$('#startButton').show();
-	  		clearInterval(showQuestion);
-	  		clearInterval(startTime);
-	  		$('#time').html(tenSeconds);
-	  		console.log('reset game');
-	  		console.log('inside resetGame ' + showQuestion);
+	  alert(`You got ${correct} out of 5`);
+	  time = 10;
+	  correct = 0;
+	  $('#startButton').show();
+	  clearInterval(showQuestion);
+	  clearInterval(startTime);
+	  $('#time').html(tenSeconds);
+	  console.log('reset game');
+	  console.log('inside resetGame ' + showQuestion);
 
 	}
 
 
 	function timer() {
 		
-		time--;
-		var converted = timeConverter(time);
-		$('#time').html(converted);
-		console.log(time);
+	  time--;
+   	  var converted = timeConverter(time);
+	  $('#time').html(converted);
+	  console.log(time);
 
 	}
 
