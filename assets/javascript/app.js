@@ -30,7 +30,6 @@ $(document).ready(function() {
 	  	nextQuestion();
 	}
 
-
 	$('#startButton').click(function () {
 		
 		showQuestion = setInterval(nextQuestion, 10000);
@@ -40,8 +39,6 @@ $(document).ready(function() {
 		displayQuestion();
 		
 	});
-
-
 
 	function displayQuestion() {
 
@@ -92,13 +89,10 @@ $(document).ready(function() {
 	  console.log(count);
 	  $('#time').html(tenSeconds);
 
-	  time = 10
-
+	  time = 10;
 
 	  $('#choice-list').empty();
 	  $('#image').attr('src', '');
-
-	  var newList = $('#choice-list');
 
 		// var l = questionArray[count] ? questionArray[count].choices.length : 0;
 
@@ -125,15 +119,12 @@ $(document).ready(function() {
 		  			
 		  			correct++;
 		  			
-	  				$('#image').attr('src', questionArray[count].pictures[0]);
-	  				
-	  				
+	  				$('#image').attr('src', questionArray[count].pictures[0]);		
 		  			
 		  		} else {
 		  			
 	  				$('#image').attr('src', questionArray[count].pictures[1]);
-	  				
-		  			
+	  						  			
 		  		}
 
 		  		$('#image').show();
@@ -172,11 +163,8 @@ $(document).ready(function() {
 	function timer() {
 		
 		time--;
-
 		var converted = timeConverter(time);
-		
 		$('#time').html(converted);
-
 		console.log(time);
 
 	}
@@ -195,24 +183,29 @@ $(document).ready(function() {
 	    minutes = "0" + minutes;
 	  }
 	  return minutes + ":" + seconds;
+
 	}
 
 	function hideImage() {
+
 	  $('#image').hide();
 	  console.log('hideImage ran');
 	  $('#choice-list').show();
-	  // $('#time').hide();
+
     }
 
     function clearIntervals() {
+
 	  clearInterval(showQuestion);
 	  clearInterval(startTime);
 	  
     }
 
     function setIntervals() {
+
       showQuestion = setInterval(nextQuestion, 10000);
 	  startTime = setInterval(timer, 1000);
+
     }
 
 });
