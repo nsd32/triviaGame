@@ -143,7 +143,8 @@ $(document).ready(function() {
 	function resetGame() {
       
       $('#question').html("");
-	  alert(`You got ${correct} out of 5`);
+	  $('#score').text(`You got ${correct} out of 5`);
+	  $('#score-modal').modal('show');
 	  time = 10;
 	  correct = 0;
 	  $('#startButton').show();
