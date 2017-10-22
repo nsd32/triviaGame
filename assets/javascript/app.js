@@ -93,7 +93,7 @@ $(document).ready(function() {
 	  $('#choice-list').empty();
 	  $('#image').attr('src', '');
 
-		// var l = questionArray[count] ? questionArray[count].choices.length : 0;
+	  // var l = questionArray[count] ? questionArray[count].choices.length : 0;
 
 	  if (questionArray[count]) {
 
